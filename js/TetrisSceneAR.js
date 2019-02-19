@@ -60,8 +60,8 @@ var TetrisSceneAR = createReactClass({
             scale={[.015, .015, .015]}
             type="VRX"
             dragType="FixedToWorld" onDrag={()=>{}}
-            /* onClick={this._onClickAnimate}
-            animation={{name:"01", run:this.state.runAnimation, loop:true,}} */
+            onClick={this._onClickAnimate}
+            animation={{name:"Waving", run:this.state.runAnimation, loop:true,}}
       />
 
           <ViroQuad
@@ -76,11 +76,11 @@ var TetrisSceneAR = createReactClass({
     );
   },
 
-/*   _onClickAnimate() {
+  _onClickAnimate() {
     this.setState({
       runAnimation : !this.state.runAnimation,
     })
-  }, */
+  },
 
 });
 
