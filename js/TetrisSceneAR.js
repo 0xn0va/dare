@@ -5,16 +5,31 @@ import React, { Component } from 'react';
 import {StyleSheet} from 'react-native';
 
 import {
+  ViroSceneNavigator,
+  ViroScene,
   ViroARScene,
-  ViroText,
-  ViroConstants,
-  ViroARPlaneSelector,
-  Viro3DObject,
-  ViroAmbientLight,
+  ViroImage,
+  ViroQuad,
   ViroNode,
+  ViroMaterials,
+  ViroOmniLight,
+  ViroARTrackingTargets,
+  ViroARImageMarker,
+  ViroParticleEmitter,
+  ViroSphere,
+  ViroAmbientLight,
   ViroSpotLight,
-  ViroSurface,
+  ViroDirectionalLight,
   ViroAnimations,
+  ViroSurface,
+  Viro3DObject,
+  ViroPortal,
+  ViroPortalScene,
+  Viro360Video,
+  Viro360Image,
+  ViroUtils,
+  ViroARPlaneSelector,
+  
 } from 'react-viro';
 
 
@@ -24,14 +39,13 @@ var TetrisSceneAR = createReactClass({
   getInitialState() {
     return {
       runAnimation:true,
-    };
+    }
   },
   render: function() {
     return (
       <ViroARScene>
         <ViroAmbientLight color="#ffffff" intensity={200}/>
 
-        <ViroARPlaneSelector> 
           <ViroSpotLight
             innerAngle={5}
             outerAngle={25}
@@ -48,21 +62,21 @@ var TetrisSceneAR = createReactClass({
           <Viro3DObject
             source={require('./res/gameGuide/NaomiWaving.vrx')}
             resources={[require('./res/gameGuide/Naomi_color.jpg')]}
-            position={[0, 0, 0]}
+            position={[0, -1, -1]}
             scale={[.015, .015, .015]}
             type="VRX"
+            dragType="FixedToWorld" onDrag={()=>{}}
             /* onClick={this._onClickAnimate}
             animation={{name:"01", run:this.state.runAnimation, loop:true,}} */
       />
 
-          <ViroSurface
-            position={[0, 0, 0]}
-            rotation={[-90, 0, 0]}
-            width={2.5} height={2.5}
-            arShadowReceiver={true}
-          />
+          <ViroQuad
+          rotation={[-90, 0, 0]}
+          position={[0, -1.6, 0]}
+          width={5} height={5}
+          arShadowReceiver={true}
+      />
 
-          </ViroARPlaneSelector>
 
         </ViroARScene>
     );
