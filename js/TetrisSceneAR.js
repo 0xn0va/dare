@@ -75,15 +75,5 @@ var TetrisSceneAR = createReactClass({
   }, */
 
 });
-/* 
-var styles = StyleSheet.create({
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 40,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',
-  },
-}); */
 
 module.exports = TetrisSceneAR;
