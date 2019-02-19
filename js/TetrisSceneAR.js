@@ -47,7 +47,7 @@ var TetrisSceneAR = createReactClass({
 
           <Viro3DObject
             source={require('./res/gameGuide/NaomiWaving.vrx')}
-            resources={[require('./gameGuide/res/Naomi_color.jpg')]}
+            resources={[require('./res/gameGuide/Naomi_color.jpg')]}
             position={[0, 0, 0]}
             scale={[.015, .015, .015]}
             type="VRX"

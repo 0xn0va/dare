@@ -37,7 +37,7 @@ var InitialARScene = require('./js/TetrisSceneAR.js');
 var UNSET = "UNSET";
 var defaultNavigatorType = UNSET;
 
-export default class DareAR extends Component {
+export default class TetrisAR extends Component {
   constructor() {
     super();
 
@@ -123,4 +123,4 @@ var localStyles = StyleSheet.create({
   }
 });
 
-module.exports = DareAR
+module.exports = TetrisAR
