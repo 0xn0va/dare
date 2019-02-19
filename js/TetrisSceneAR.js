@@ -8,49 +8,82 @@ import {
   ViroARScene,
   ViroText,
   ViroConstants,
+  ViroARPlaneSelector,
+  Viro3DObject,
+  ViroAmbientLight,
+  ViroNode,
+  ViroSpotLight,
+  ViroSurface,
+  ViroAnimations,
 } from 'react-viro';
 
-export default class HelloWorldSceneAR extends Component {
 
-  constructor() {
-    super();
+var createReactClass = require('create-react-class');
 
-    // Set initial state here
-    this.state = {
-      text : "Initializing AR..."
+var TetrisSceneAR = createReactClass({
+  getInitialState() {
+    return {
+      runAnimation:true,
     };
-
-    // bind 'this' to functions
-    this._onInitialized = this._onInitialized.bind(this);
-  }
-
-  render() {
+  },
+  render: function() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized} >
-        <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
-      </ViroARScene>
+      <ViroARScene>
+        <ViroAmbientLight color="#ffffff" intensity={200}/>
+
+        <ViroARPlaneSelector> 
+          <ViroSpotLight
+            innerAngle={5}
+            outerAngle={25}
+            direction={[0,-1,0]}
+            position={[0, 5, 0]}
+            color="#ffffff"
+            castsShadow={true}
+            shadowMapSize={2048}
+            shadowNearZ={2}
+            shadowFarZ={7}
+            shadowOpacity={.7}
+          />
+
+          <Viro3DObject
+            source={require('./res/gameGuide/NaomiWaving.vrx')}
+            resources={[require('./gameGuide/res/Naomi_color.jpg')]}
+            position={[0, 0, 0]}
+            scale={[.015, .015, .015]}
+            type="VRX"
+            /* onClick={this._onClickAnimate}
+            animation={{name:"01", run:this.state.runAnimation, loop:true,}} */
+      />
+
+          <ViroSurface
+            position={[0, 0, 0]}
+            rotation={[-90, 0, 0]}
+            width={2.5} height={2.5}
+            arShadowReceiver={true}
+          />
+
+          </ViroARPlaneSelector>
+
+        </ViroARScene>
     );
-  }
+  },
 
-  _onInitialized(state, reason) {
-    if (state == ViroConstants.TRACKING_NORMAL) {
-      this.setState({
-        text : "Hello World!"
-      });
-    } else if (state == ViroConstants.TRACKING_NONE) {
-      // Handle loss of tracking
-    }
-  }
-}
+/*   _onClickAnimate() {
+    this.setState({
+      runAnimation : !this.state.runAnimation,
+    })
+  }, */
 
+});
+/* 
 var styles = StyleSheet.create({
   helloWorldTextStyle: {
     fontFamily: 'Arial',
-    fontSize: 30,
+    fontSize: 40,
     color: '#ffffff',
     textAlignVertical: 'center',
-    textAlign: 'center',  
+    textAlign: 'center',
   },
-});
+}); */
 
-module.exports = HelloWorldSceneAR;
+module.exports = TetrisSceneAR;

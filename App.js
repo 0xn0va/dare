@@ -60,14 +60,6 @@ export default class DareAR extends Component {
         initialScene={{scene: InitialARScene}} />
     );
   }
-  
-  _getExperienceButtonOnPress(navigatorType) {
-    return () => {
-      this.setState({
-        navigatorType : navigatorType
-      })
-    }
-  }
 
   _exitViro() {
     this.setState({
