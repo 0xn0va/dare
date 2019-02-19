@@ -15,18 +15,12 @@ import {
   ViroOmniLight,
   ViroARTrackingTargets,
   ViroARImageMarker,
-  ViroParticleEmitter,
   ViroSphere,
   ViroAmbientLight,
   ViroSpotLight,
   ViroDirectionalLight,
   ViroAnimations,
-  ViroSurface,
   Viro3DObject,
-  ViroPortal,
-  ViroPortalScene,
-  Viro360Video,
-  Viro360Image,
   ViroUtils,
   ViroARPlaneSelector,
   
@@ -60,7 +54,7 @@ var TetrisSceneAR = createReactClass({
           />
 
           <Viro3DObject
-            source={require('./res/gameGuide/NaomiWaving.vrx')}
+            source={require('./res/gameGuide/NaomiWAVE.vrx')}
             resources={[require('./res/gameGuide/Naomi_color.jpg')]}
             position={[0, -1, -1]}
             scale={[.015, .015, .015]}
