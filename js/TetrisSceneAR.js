@@ -29,6 +29,13 @@ import {
 
 var createReactClass = require('create-react-class');
 
+const BLOCKS = [
+  require("./res/ga"),
+
+]
+
+const PLANE_SIZE = 0.5
+
 var TetrisSceneAR = createReactClass({
   getInitialState() {
     return {
