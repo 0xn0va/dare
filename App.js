@@ -134,7 +134,7 @@ export default class TetrisAR extends Component {
         <View style={localStyles.inner} >
           <Text style={localStyles.titleText}>Tetris!</Text>
           <Text style={localStyles.titleText}>
-            { this.state.gameState === GAME_STATES.MENU ? " " : "GAME OVER" }
+            { this.state.gameState === GAME_STATES.MENU ? "Planning of internet based business course - OAMK, Winter 2019" : "GAME OVER" }
           </Text>
           { this.state.gameState === GAME_STATES.MENU &&
             <Text style={localStyles.text}>

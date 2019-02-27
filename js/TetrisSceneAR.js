@@ -85,7 +85,7 @@ export class TetrisSceneAR extends Component {
   getUIText(uiText){
     return (
       <ViroText 
-        text={uiText} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} transformBehaviors={["billboardX", "billboardY"]}
+        text={uiText} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.ARTextStyle} transformBehaviors={["billboardX", "billboardY"]}
       />
     )
   }
@@ -232,7 +232,7 @@ export class TetrisSceneAR extends Component {
             )  
           }
           {
-            this.getGameGuide()
+            this.getGameGuide() 
           }
         </ViroARScene>
     );
@@ -252,10 +252,10 @@ export class TetrisSceneAR extends Component {
 }
 
 var styles = StyleSheet.create({
-  helloWorldTextStyle: {
+  ARTextStyle: {
     fontFamily: 'Arial',
     fontSize: 10,
-    color: '#ffffff',
+    color: '#FE3232',
     textAlignVertical: 'center',
     textAlign: 'center',  
   },
