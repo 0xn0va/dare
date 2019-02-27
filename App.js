@@ -30,15 +30,8 @@ import {
   ViroARSceneNavigator
 } from 'react-viro';
 
-
-// var sharedProps = {
-//   apiKey:"DA081282-712F-47D8-B5EE-E4E61A5D3A7C",
-// }
-
 const API_KEY = "DA081282-712F-47D8-B5EE-E4E61A5D3A7C";
 
-
-// Game definitions
 const GAME_STATES = {
   MENU: Symbol("Menu"),
   IN_GAME: Symbol("InGame"),
@@ -48,9 +41,6 @@ const GAME_STATES = {
 
 const SCORE_MODIFIER = 100;
 const MODEL_PER_LEVEL = 10;
-
-// var InitialARScene = require('./js/TetrisSceneAR.js');
-
 
 var UNSET = "UNSET";
 var defaultNavigatorType = UNSET;
@@ -103,15 +93,11 @@ export default class TetrisAR extends Component {
     })
   }
   
-
-
   updateScore = () => {
     this.setState({
       score: this.state.score + 100
     })
   }
-
-
 
   render() {
     switch (this.state.gameState) {
@@ -131,10 +117,10 @@ export default class TetrisAR extends Component {
       <View style={localStyles.outer} >
         <View style={localStyles.inner}>
           <Text style={localStyles.titleText}>{`LEVEL ${this.state.level}`}</Text>
-          <Text style={localStyles.text}>{`Put ${this.state.level * MODEL_PER_LEVEL} blocks on the surface. There may someone apear to help you!`}</Text>
+          <Text style={localStyles.text}>{`Put ${this.state.level * MODEL_PER_LEVEL} blocks on top of eachother!`}</Text>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.startGame}
-            underlayColor={'#68a0ff'} >
+            underlayColor={'#CA4EDE'} >
             <Text style={localStyles.buttonText}>Start Level</Text>
           </TouchableHighlight>
         </View>
@@ -148,7 +134,7 @@ export default class TetrisAR extends Component {
         <View style={localStyles.inner} >
           <Text style={localStyles.titleText}>Tetris!</Text>
           <Text style={localStyles.titleText}>
-            { this.state.gameState === GAME_STATES.MENU ? "MENU" : "GAME OVER" }
+            { this.state.gameState === GAME_STATES.MENU ? " " : "GAME OVER" }
           </Text>
           { this.state.gameState === GAME_STATES.MENU &&
             <Text style={localStyles.text}>
@@ -157,7 +143,7 @@ export default class TetrisAR extends Component {
           }
           <TouchableHighlight style={localStyles.buttons}
             onPress={this.changeLevel}
-            underlayColor={'#68a0ff'} >
+            underlayColor={'#CA4EDE'} >
             <Text style={localStyles.buttonText}>Go!</Text>
           </TouchableHighlight>
         </View>
@@ -189,7 +175,7 @@ export default class TetrisAR extends Component {
         />
         <View style={localStyles.topMenu}>
           <TouchableHighlight style={localStyles.buttons}
-            underlayColor={'#68a0ff'}
+            underlayColor={'#CA4EDE'}
             onPress={this.backToMenu}
           >
             <Text style={localStyles.buttonText}>
@@ -197,14 +183,14 @@ export default class TetrisAR extends Component {
             </Text>
           </TouchableHighlight>
           <TouchableHighlight style={localStyles.buttons}
-            underlayColor={'#68a0ff'} >
+            underlayColor={'#CA4EDE'} >
             <Text style={localStyles.buttonText}>
               { this.state.score }
             </Text>
           </TouchableHighlight>
           <TouchableHighlight style={localStyles.buttons}
             active={!this.state.modelLoading}
-            underlayColor={'#68a0ff'}>
+            underlayColor={'#CA4EDE'}>
             <Text style={localStyles.buttonText}>
               {`Lives: ${ this.state.lives }`}
             </Text>
@@ -213,36 +199,6 @@ export default class TetrisAR extends Component {
       </View>
     )
   }
-
-
-  // constructor() {
-  //   super();
-
-  //   this.state = {
-  //     navigatorType : defaultNavigatorType,
-  //     sharedProps : sharedProps
-  //   }
-  //   this._getARNavigator = this._getARNavigator.bind(this);
-  //   this._exitViro = this._exitViro.bind(this);
-  // }
-
-  // render() {
-  //   if (this.state.navigatorType == UNSET) {
-  //     return this._getARNavigator();
-  //   }
-  // }
-  // _getARNavigator() {
-  //   return (
-  //     <ViroARSceneNavigator {...this.state.sharedProps}
-  //       initialScene={{scene: InitialARScene}} />
-  //   );
-  // }
-
-  // _exitViro() {
-  //   this.setState({
-  //     navigatorType : UNSET
-  //   })
-  // }
 }
 
 var localStyles = StyleSheet.create({
@@ -257,7 +213,7 @@ var localStyles = StyleSheet.create({
     flex:1,
   },
   topMenu: {
-    width : '100%',
+    width : '95%',
     position : 'absolute',
     top : 0,
     flexDirection: 'row',
@@ -279,23 +235,23 @@ var localStyles = StyleSheet.create({
   titleText: {
     paddingTop: 30,
     paddingBottom: 20,
-    color:'#fff',
+    color:'#FE3232',
     textAlign:'center',
     fontSize : 25
   },
   text: {
-    color: '#fff',
+    color: '#FE3232',
     textAlign: 'center',
     fontSize: 16
   },
   buttonText: {
-    color:'#fff',
+    color:'#FE3232',
     textAlign:'center',
     fontSize : 20
   },
   buttons : {
-    height: 80,
-    width: 150,
+    height: 70,
+    width: 140,
     paddingTop:20,
     paddingBottom:20,
     marginTop: 10,
@@ -306,8 +262,8 @@ var localStyles = StyleSheet.create({
     borderColor: 'rgba(123,087,231,.4)'
   },
   exitButton : {
-    height: 50,
-    width: 100,
+    height: 40,
+    width: 90,
     paddingTop:10,
     paddingBottom:10,
     marginTop: 10,
@@ -318,4 +274,5 @@ var localStyles = StyleSheet.create({
     borderColor: '#fff',
   }
 });
+
 module.exports = TetrisAR

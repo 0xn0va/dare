@@ -29,9 +29,6 @@ import {
   
 } from 'react-viro';
 
-
-// var createReactClass = require('create-react-class');
-
 const BLOCKS = [
   require("./res/gameBlocks/block1.vrx"),
   require("./res/gameBlocks/block2.vrx"),
@@ -39,7 +36,6 @@ const BLOCKS = [
   require("./res/gameBlocks/block4.vrx"),
   require("./res/gameBlocks/block5.vrx"),
 ]
-
 
 const PLANE_SIZE = 0.5
 
@@ -90,6 +86,26 @@ export class TetrisSceneAR extends Component {
     return (
       <ViroText 
         text={uiText} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} transformBehaviors={["billboardX", "billboardY"]}
+      />
+    )
+  }
+
+  getGameGuide(){
+    return (
+          <Viro3DObject
+            source={require('./res/gameGuide/NaomiWAVE.vrx')}
+            resources={[require('./res/gameGuide/Naomi_color.jpg')]}
+            position={[-1, -1, -1]}
+            scale={[.013, .013, .013]}
+            rotation={[0, 35, 0]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={()=>{}}
+            onClick={() => {
+              this.setState({
+                runAnimation : !this.state.runAnimation,
+              })
+            }}
+            animation={{name:"Waving", run:this.state.runAnimation, loop:true,}}
       />
     )
   }
@@ -145,23 +161,21 @@ export class TetrisSceneAR extends Component {
           enabled: this.state.activatedIndexes.includes(`$model:{modelType}-no:${index}`),
           mass: 1,
         }}
-      />
+        
+      />  
     )
   }
-
   
   deadZoneCollide = () => {
     this.props.arSceneNavigator.viroAppProps.looseLive()
   }
   
-
   onPlaneSelected = (anchorMap) => {
     this.setState({
       planeWidth: PLANE_SIZE / this.props.arSceneNavigator.viroAppProps.level,
       planeLength: PLANE_SIZE / this.props.arSceneNavigator.viroAppProps.level
     })
   }
-  
   
   getARScene(){
    return (
@@ -188,6 +202,7 @@ export class TetrisSceneAR extends Component {
         />
       </ViroARPlaneSelector>
    )
+               
   }
  
   render() {
@@ -202,7 +217,7 @@ export class TetrisSceneAR extends Component {
             castsShadow={true} 
           />
           {
-            this.state.planeWidth === 0 && this.getUIText("Select an area to play")
+            this.state.planeWidth === 0 && this.getUIText("To start playing select an area!")
           }
           {
             this.state.loadedModelsCounter !== this.state.modelMap.length && 
@@ -216,10 +231,12 @@ export class TetrisSceneAR extends Component {
               this.state.initialized ? "Initializing" : "No Tracking"
             )  
           }
+          {
+            this.getGameGuide()
+          }
         </ViroARScene>
     );
   }
-
   _onInitialized = (state, reason) => {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
@@ -256,7 +273,6 @@ ViroMaterials.createMaterials({
   }
 })
 
-
 ViroAnimations.registerAnimations({
   loopRotate:{
     properties:{
@@ -270,60 +286,3 @@ ViroAnimations.registerAnimations({
     duration: 1000
   }
 });
-
-// var TetrisSceneAR = createReactClass({
-//   getInitialState() {
-//     return {
-//       runAnimation:true,
-//     }
-//   },
-//   render: function() {
-//     return (
-//       <ViroARScene>
-//         <ViroAmbientLight color="#ffffff" intensity={200}/>
-
-//           <ViroSpotLight
-//             innerAngle={5}
-//             outerAngle={25}
-//             direction={[0,-1,0]}
-//             position={[0, 5, 0]}
-//             color="#ffffff"
-//             castsShadow={true}
-//             shadowMapSize={2048}
-//             shadowNearZ={2}
-//             shadowFarZ={7}
-//             shadowOpacity={.7}
-//           />
-
-//           <Viro3DObject
-//             source={require('./res/gameGuide/NaomiWAVE.vrx')}
-//             resources={[require('./res/gameGuide/Naomi_color.jpg')]}
-//             position={[0, -1, -1]}
-//             scale={[.015, .015, .015]}
-//             type="VRX"
-//             dragType="FixedToWorld" onDrag={()=>{}}
-//             onClick={this._onClickAnimate}
-//             animation={{name:"Waving", run:this.state.runAnimation, loop:true,}}
-//       />
-
-//           <ViroQuad
-//           rotation={[-90, 0, 0]}
-//           position={[0, -1.6, 0]}
-//           width={5} height={5}
-//           arShadowReceiver={true}
-//       />
-
-
-//         </ViroARScene>
-//     );
-//   },
-
-//   _onClickAnimate() {
-//     this.setState({
-//       runAnimation : !this.state.runAnimation,
-//     })
-//   },
-
-// });
-
-// module.exports = TetrisSceneAR;
